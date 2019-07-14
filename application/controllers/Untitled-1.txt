@@ -1,0 +1,108 @@
+ function __construct(){
+            parent::__construct();
+            $this->load->library('Pdf');
+            $this->load->model('testpdf_model','testpdf');
+        }
+        
+        function index(){
+            $this->Pdf->Header('sdfjlkdsjf');
+            $pdf = new Pdf('P', 'mm', 'A4', TRUE, 'UTF-8', FALSE);
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetTitle('Pdf Example');
+            $pdf->setPrintHeader();
+
+            $image_file = K_PATH_IMAGES.base_url('assets/images/1.png');
+            // set default header data
+            $pdf->SetHeaderData('iron.jpg', 100, 'Web Tech BD', 'Varthokhola, Sylhet - 3100',array(1,100,1),array(5,5,5));
+            // set header and footer fonts
+            $pdf->setHeaderFont(Array('Helvetica', '', 14));
+            $pdf->setFooterFont(Array('Helvetica', 'C', 10));
+            // set default monospaced font
+            $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+            // set margins
+            $pdf->SetMargins(10, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT,5);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(5);
+            // set auto page breaks
+            $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+            // set image scale factor
+            $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+
+            $pdf->AddPage();
+            
+            $pdf->Cell(50,5,'Programm Name: ',1,0);
+            $pdf->Cell(140,5,'Web Design && Development',1,1);
+            $pdf->Cell(50,5,'Trainer:',1,0);
+            $pdf->Cell(140,5,'MD. AL AMIN',1,1);
+            $pdf->Ln();
+            $pdf->Cell(6,10,'SL',1,0);
+            $pdf->Cell(60,10,'Name',1,0);
+            $pdf->Cell(15,10,'Roll',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,0);
+            $pdf->Cell(5,10,'',1,1);
+
+            $pdf->SetFont('Helvetica','',10);
+            $qry = $this->testpdf->fetchdata();
+            $i = 1;
+            foreach($qry->result() as $row){
+                $pdf->Cell(6,6,$i++,1,0);
+                $pdf->Cell(60,6,$row->student_name,1,0);
+                $pdf->Cell(15,6,$row->student_id,1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,0);
+                $pdf->Cell(5,6,'',1,1);
+            }
+            $pdf->Cell(0,10,'Page'.$pdf->PageNo(),0,0);
+            $pdf->Output('testpdf.pdf','I');
+            
+        }
+
+
+        function pdfpage(){
+            //$this->Pdf->Headerpdf();
+            $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+            
+            $pdf->AddPage();
+            
+            $pdf->Output('alamin.pdf', 'I'); 
+        }

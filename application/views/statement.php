@@ -1,11 +1,31 @@
 <div class="containt">
-
+    <form action="" method="get">
+        <div class="row">
+            <div class="col-md-2">
+                <label for="">From Date</label>
+                <input type="date" name="from_date" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <label for="">To Date</label>
+                <input type="date" name="to_date" value="<?= set_value('to_date')?>" class="form-control">
+            </div>
+            <div class="col-md-1">
+                <label for="">.</label>
+                <input type="submit" name="search" class="btn btn-success" value="Search">
+            </div>
+            <div class="col-md-1">
+                <label for="">.</label>
+                <input type="submit" name="generate" class="btn btn-success" value="Generate Report">
+            </div>
+        </div>
+    </form>
     <table class="table table-bordered" width="100%">
         <tr>
             <th>Sl</th>
             <th>Student ID</th>
             <th>Name</th>
             <th>Course_code</th>
+            <th>Reg. Date</th>
             <th>Course_fee</th>
             <th>Waiver(%)</th>
             <th>Debit(Tk)</th>
@@ -32,6 +52,7 @@
             <td><?= $row->student_id ?></td>
             <td><?= $row->student_name ?></td>
             <td><?= $row->course_code ?></td>
+            <td><?= $row->reg_date ?></td>
             <td><?= $row->course_fee ?></td>
             <td><?= $row->course_waiver."%" ?></td>
             <td><?= $row->payable_amount ?></td>
@@ -42,12 +63,12 @@
             <td><?php  echo $row->payable_amount - $credit->collectionamount;
                 $total_due += $row->payable_amount - $credit->collectionamount;
             ?></td>
-            <td><?php echo ""; ?></td>
+            <td><?= $row->user_id ?></td>
         </tr>
         
         <?php } ?>
         <tr>
-            <th colspan="4">Grand Total </th>
+            <th colspan="5">Grand Total </th>
             <th> <?= $total_coursefee ?></th>
             <th> <?= '' ?></th>
             <th> <?= $total_debit ?></th>

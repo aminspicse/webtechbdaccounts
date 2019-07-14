@@ -25,11 +25,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         'course_fee'    => $_POST['course_fee'],
                         'course_waiver' => $_POST['course_waiver'],
                         'payable_amount'=> $_POST['payable_amount'],
-                        'course_start'  => date('d-m-y',strtotime($_POST['course_start'])),
-                        'course_end'    => date('d-m-y',strtotime($_POST['course_end'])),
+                        'course_start'  => $_POST['course_start'],
+                        'course_end'    => $_POST['course_end'],
                         'class_day'     => $_POST['class_day'],
                         'class_time'    => $_POST['class_time'],
-                        'reg_date'      => date('d-m-y',strtotime($_POST['reg_date']))
+                        'reg_date'      => $_POST['reg_date']
                     );
     
                     if($this->CourseReg_Model->course_reg('course_registration',$data) == true){

@@ -53,7 +53,7 @@ $route['default_controller'] = 'Login/login';
 $route['login'] = 'Login/login';
 $route['logout'] = 'Login/logout';
 $route['home'] = 'Home';
-$route['add'] = 'Home/add';
+$route['add'] = 'Home/add';  
 // collection controller
 $route['collection'] = 'Collection/index';
 $route['deletecollection'] = 'Collection/delete_collection';
